@@ -1,0 +1,62 @@
+<div class="container pt-3">
+  <div class="row text-center my-3">
+    <!-- first type of using appStyle directive: -->
+    <!-- appStyle [color]="'red'" -->
+    <!-- short way of doing it: -->
+    <h4
+      [appStyle]="{ color: 'red', border: border, borderRadius: '15px' }"
+      [ngSwitch]="currentPage"
+      class="row justify-content-center mx-5"
+    >
+      <ng-container *ngSwitchCase="0">1st Page</ng-container>
+      <ng-container *ngSwitchCase="1">2nd Page</ng-container>
+      <ng-container *ngSwitchCase="2">3rd Page</ng-container>
+      <ng-container *ngSwitchDefault>{{ currentPage + 1 }}th Page</ng-container>
+      : {{ pages[currentPage].title }}
+    </h4>
+    <img
+      class="row justify-content-center mx-auto"
+      [src]="pages[currentPage].link"
+      style="width: 50rem; height: 30rem"
+    />
+  </div>
+  <nav class="row mx-auto justify-content-center">
+    <ul class="pagination mx-auto justify-content-center">
+      <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
+        <a
+          class="page-link"
+          (click)="currentPage = currentPage > 0 ? currentPage - 1 : 0"
+          tabIndex="-1"
+          >Previous</a
+        >
+      </li>
+      <!-- <ng-container *ngFor="let page of pages; let i = index"> -->
+      <ng-container *appRepeat="pages.length; let i = idx; let pi = pageIdx">
+        <li *ngIf="indexIsNearCurrent(i)" class="page-item">
+          <!-- <a href="#" class="page-link" [ngClass]="getClass(i)">{{ -->
+          <a
+            (click)="currentPage = i"
+            href="#"
+            class="page-link"
+            [appClass]="{ active: i === currentPage }"
+            >{{ pi }}</a
+          >
+          <!-- [ngClass]="{ active: i === currentPage }" -->
+        </li>
+      </ng-container>
+      <li
+        class="page-item"
+        [ngClass]="{ disabled: currentPage === pages.length - 1 }"
+      >
+        <a
+          (click)="
+            currentPage =
+              currentPage < pages.length - 1 ? currentPage + 1 : currentPage
+          "
+          class="page-link"
+          >Next</a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>

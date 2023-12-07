@@ -1,0 +1,22 @@
+<div class="ui container">
+  <div class="ui secondary pointing menu">
+    <!-- routerLinkActive => the class names that will be added to element classList when the url is active -->
+
+    <!-- <a routerLink="" routerLinkActive="active" class="item">Home</a> -->
+    <a routerLink="" [class]="getHomeClass()">Home</a>
+    <!-- using routerLinkActive for '/' route will cause it to be always active -->
+    <a routerLink="/elements" class="item" routerLinkActive="active"
+      >Elements</a
+    >
+    <!-- 'active' is a semantic-ui class name -->
+    <a routerLink="/collections" class="item" routerLinkActive="active"
+      >Collections</a
+    >
+  </div>
+
+  <div class="ui segment">
+    <!-- <p>In proper routes, router-outlet</p> -->
+    <router-outlet></router-outlet>
+    <!-- <p>will be replaced by proper components(that will be created then) from the target module.</p> -->
+  </div>
+</div>

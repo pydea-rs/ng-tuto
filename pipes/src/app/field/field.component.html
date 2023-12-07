@@ -1,0 +1,16 @@
+<div class="row py-1">
+  <div class="col form-group">
+    <label>{{ label }}</label>
+    <input
+      [type]="inputType != null ? inputType : 'text'"
+      class="form-control"
+      (input)="inputFunction($event)"
+    />
+  </div>
+  <div class="col">
+    <b>{{ newLabel }}</b>
+    <p>{{ value }} {{ unit }}</p>
+    <p *ngIf="secondValue">{{ secondValue }} {{ unit }}</p>
+  </div>
+</div>
+<hr />

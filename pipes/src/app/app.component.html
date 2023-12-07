@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <app-field
+    label="Name:"
+    newLabel="TitleCase Name:"
+    [value]="name | titlecase"
+    [inputFunction]="onNameChange"
+  ></app-field>
+
+  <app-field
+    label="Date:"
+    newLabel="Formatted Date:"
+    inputType="date"
+    [value]="(date | date : 'fullDate') || ''"
+    [secondValue]="(date | date : 'MMM dd, yyyy') || ''"
+    [inputFunction]="onDateChange"
+  ></app-field>
+  <!-- <p>{{ date | date: "MMMM dd, yyyy" }}</p> -->
+
+  <app-field
+    label="Money Amount:"
+    newLabel="Money Amount:"
+    [value]="(moneyAmount * 10 | currency : 'IRR') || '0.0'"
+    [secondValue]="(moneyAmount | currency : 'JPY') || '0.0'"
+    [inputFunction]="onMoneyAmountChange"
+  ></app-field>
+  <!-- <p>{{ moneyAmount | currency : "JPY" }}</p> -->
+
+  <app-field
+    label="Height:"
+    newLabel="Height:"
+    [value]="(height | number : '1.0-0') || '0.0'"
+    [secondValue]="(height | number : '3.1-3') || '0.0'"
+    unit="cm"
+    [inputFunction]="onHeightChange"
+  ></app-field>
+  <!--format: "digits_on_left.min_preciesion-max_precision" -->
+
+  <app-field
+    label="Object:"
+    newLabel="Object:"
+    [value]="object | json"
+    [inputFunction]="onObjectChange"
+    [object]="object"
+  ></app-field>
+  <app-field
+    label="Distance:"
+    newLabel="Distance:"
+    unit="km"
+    [value]="(distance | distance : 'km' | number : '1.1-3') || '0.0'"
+    [inputFunction]="onDistanceChange"
+  ></app-field>
+  <!-- dont know why [object] is needed but it is!-->
+
+  <!-- another style: -->
+  <!--
+  <div class="row py-1">
+    <hr />
+
+    <div class="col form-group">
+      <label>Object:</label>
+      <input class="form-control" (input)="onObjectChange($event)" />
+    </div>
+    <div class="col">
+      <b>Object:</b><br />
+
+      <i>{{ object | json }}</i>
+    </div>
+  </div> -->
+</div>
